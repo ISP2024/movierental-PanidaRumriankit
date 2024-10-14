@@ -48,6 +48,7 @@ class RegularPrice(PriceStrategy):
         amount = 2.0
         if days > 2:
             amount += 1.5 * (days - 2)
+        return amount
 
 
 NEW_RELEASE = NewRelease()

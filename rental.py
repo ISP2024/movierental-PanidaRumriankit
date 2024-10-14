@@ -27,7 +27,7 @@ class Rental:
     def get_days_rented(self):
         return self.days_rented
 
-    def get_price(self):
+    def get_price(self) -> float:
         return self.get_movie().get_price(self.days_rented)
 
     def get_rental_points(self):
