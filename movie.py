@@ -18,6 +18,12 @@ class PriceStrategy(ABC):
 
 class NewRelease(PriceStrategy):
     """Pricing rules for New Release movies."""
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(NewRelease, cls).__new__(cls)
+        return cls._instance
 
     def get_rental_points(self, days):
         """New release rentals earn 1 point for each day rented."""
@@ -28,6 +34,13 @@ class NewRelease(PriceStrategy):
 
 
 class ChildrensPrice(PriceStrategy):
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(ChildrensPrice, cls).__new__(cls)
+        return cls._instance
+
     def get_rental_points(self, days: int) -> int:
         return 1
 
@@ -40,6 +53,11 @@ class ChildrensPrice(PriceStrategy):
 
 class RegularPrice(PriceStrategy):
     _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(RegularPrice, cls).__new__(cls)
+        return cls._instance
 
     def get_rental_points(self, days: int) -> int:
         return 1
