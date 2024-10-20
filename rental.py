@@ -40,7 +40,7 @@ class Rental:
         return self.price_code
 
     def price_code_for_movie(self):
-        if self.movie.year == datetime.datetime.year:
+        if self.movie.year == datetime.datetime.now().year:
             return self.NEW_RELEASE
         elif "Children" in self.movie.genre or "Childrens" in self.movie.genre:
             return self.CHILDRENS
