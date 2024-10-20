@@ -20,7 +20,9 @@ See [Resources](https://cpske.github.io/ISP/assignment/movierental/movierental-p
 
 ## Rationale
 2.1 what refactoring signs (code smells) suggest this refactoring?
-Feature Envy
+- Feature Envy
+
 2.2 what design principle suggests this refactoring? Why?
-Single Responsibility Principle (SRP) because SRP states that a class should have only one reason to change like in the current design that we remove price_code, get_price() and get_rental_points() from Movie class.
+- Single Responsibility Principle (SRP) because SRP states that a class should have only one reason to change like in the current design that we remove price_code, get_price() and get_rental_points() from Movie class.
+
 5.2 I implement price_code_for_movie as a method in Rental class using High Cohesion. I think implement price_code_for_movie in a class that closely uses the price codes is more suitable than implement it in Movie class which might violate SRP. For implementing price_code_for_movie in PriceStrategy, I found it looks unnecessary complicated and not clean compare to when I implement it in Rental class.
