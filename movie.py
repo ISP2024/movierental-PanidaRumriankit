@@ -37,7 +37,7 @@ def parse_data():
                 data.append(Movie(r[1], int(r[2]), r[3].split("|")))
             except (IndexError, ValueError):
                 log = logging.getLogger()
-                log.error(f'Line {line_num}: Unrecognized format "{",".join(row)}"')
+                log.error(f'Line {line_num}: Unrecognized format "{",".join(r)}"')
                 continue
     return data
 
