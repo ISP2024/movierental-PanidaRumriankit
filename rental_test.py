@@ -29,7 +29,6 @@ class RentalTest(unittest.TestCase):
         self.assertEqual(rental.get_price(), 1.5)
         rental = Rental(self.childrens_movie, 4)
         self.assertEqual(rental.get_price(), 3.0)
-        # self.fail("TODO add more tests for other movie categories")
 
     def test_rental_points(self):
         rental = Rental(self.new_movie, 5)
