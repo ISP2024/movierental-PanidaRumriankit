@@ -1,6 +1,7 @@
 from typing import Collection
 from dataclasses import dataclass
 import csv
+import logging
 
 
 @dataclass(frozen=True)
@@ -29,10 +30,15 @@ def parse_data():
     data = []
     with open("movies.csv", "r", encoding="UTF-8") as file:
         reader = csv.reader(file)
-        for r in reader:
-            if r[0] == "#id":
+        for line_num, r in enumerate(reader, start=1):
+            if not r or r[0].startswith('#'):
                 continue
-            data.append(Movie(r[1], int(r[2]), r[3].split("|")))
+            try:
+                data.append(Movie(r[1], int(r[2]), r[3].split("|")))
+            except (IndexError, ValueError):
+                log = logging.getLogger()
+                log.error(f'Line {line_num}: Unrecognized format "{",".join(row)}"')
+                continue
     return data
 
 
@@ -53,4 +59,3 @@ class MovieCatalog:
                 return movie
             elif name == movie.title and year:
                 return movie
-
