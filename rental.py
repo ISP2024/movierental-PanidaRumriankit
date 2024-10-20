@@ -19,12 +19,13 @@ class Rental:
     NEW_RELEASE = 1
     CHILDRENS = 2
     
-    def __init__(self, movie, days_rented):
+    def __init__(self, movie, days_rented, price_code):
         """Initialize a new movie rental object for
            a movie with known rental period (daysRented).
         """
         self.movie = movie
         self.days_rented = days_rented
+        self.price_code = price_code
         self.price_strategy = self.get_price_strategy()
 
     def get_movie(self):
@@ -33,14 +34,17 @@ class Rental:
     def get_days_rented(self):
         return self.days_rented
 
+    def get_price_code(self):
+        # get the price code
+        return self.price_code
+
     def get_price_strategy(self):
         """Return the appropriate PriceStrategy based on the price_code."""
-        price_code = self.movie.price_code
-        if price_code == self.NEW_RELEASE:
+        if self.get_price_code() == self.NEW_RELEASE:
             return NEW_RELEASE
-        elif price_code == self.CHILDRENS:
+        elif self.get_price_code() == self.CHILDRENS:
             return CHILDREN
-        elif price_code == self.REGULAR:
+        elif self.get_price_code() == self.REGULAR:
             return REGULAR
         else:
             log = logging.getLogger()
